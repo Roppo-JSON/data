@@ -1,6 +1,9 @@
 """日本国憲法を ./schema.json 通りの JSON に整形するスクリプト"""
 import json
 
+from utils.util import become_list
+from utils.util import get_text_from_paragraph_sentence
+
 
 def get_preamble(raw_preamble: dict) -> dict:
     """日本国憲法 前文 を取得する"""
@@ -13,14 +16,6 @@ def get_preamble(raw_preamble: dict) -> dict:
             'examples': None
         }]
     }
-
-def become_list(item) -> list:
-    """引数が list でなければ list に変換して返す。引数が list であればそのまま帰す"""
-
-    if isinstance(item, list):
-        return item
-    else:
-        return [item]
 
 def get_examples(items: list) -> list:
     """例をリストとして取得する"""
@@ -57,18 +52,13 @@ def get_provision(paragraphs: list, title: str) -> dict:
         if 'Item' in paragraph:
             term['examples'] = get_examples(paragraph['Item'])
 
-        text: list = []
-        sentences: list = become_list(paragraph['ParagraphSentence']['Sentence'])
-        for sentence in sentences:
-            text.append(sentence['#text'])
-
-        term['sentence'] = ''.join(text)
+        term['sentence'] = get_text_from_paragraph_sentence(paragraph['ParagraphSentence'])
         provision['terms'].append(term)
 
     else:
         for paragraph in paragraphs:
             term: dict = {
-                'title': '第' + paragraph['@Num'] + '項',
+                'title': f"第{paragraph['@Num']}項",
                 'sentence': None,
                 'examples': None
             }
@@ -77,12 +67,7 @@ def get_provision(paragraphs: list, title: str) -> dict:
             if 'Item' in paragraph:
                 term['examples'] = get_examples(paragraph['Item'])
 
-            text: list = []
-            sentences = become_list(paragraph['ParagraphSentence']['Sentence'])
-            for sentence in sentences:
-                text.append(sentence['#text'])
-
-            term['sentence'] = ''.join(text)
+            term['sentence'] = get_text_from_paragraph_sentence(paragraph['ParagraphSentence'])
             provision['terms'].append(term)
 
     return provision
