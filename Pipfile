@@ -10,9 +10,13 @@ test-util = "python tests/test_util.py"
 
 [dev-packages]
 flake8 = "*"
+black = "*"
 
 [packages]
 jsonschema = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
