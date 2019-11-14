@@ -20,4 +20,5 @@ jobs:
         pipenv install --dev
     - name: Run test
       run: |
-        pipenv run code-style
+        pipenv run style-check
+        pipenv run validate-json
