@@ -23,12 +23,7 @@ def get_examples(items: list) -> list:
 
     examples: list = []
     for item in items:
-        sentences: list = become_list(item['ItemSentence']['Sentence'])
-
-        text: list = []
-        for sentence in sentences:
-            text.append(sentence['#text'])
-        examples.append(''.join(text))
+        examples.append(get_text_from_paragraph_sentence(item['ItemSentence']))
 
     return examples
 
