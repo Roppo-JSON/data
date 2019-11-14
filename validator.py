@@ -9,7 +9,6 @@ def main():
     with open('schema.json', 'r') as schema_file:
         json_schema = json.load(schema_file)
 
-
     for file_name in glob.glob('dist/*'):
 
         with open(file_name, 'r') as data_file:

@@ -1,5 +1,6 @@
 """複数の法令のパースに使えそうな関数群"""
 
+
 def become_list(item) -> list:
     """引数が list でなければ list に変換して返す。引数が list であればそのまま帰す
 
@@ -10,6 +11,7 @@ def become_list(item) -> list:
         return item
     else:
         return [item]
+
 
 def get_text_from_paragraph_sentence(paragraph_sentence: list) -> str:
     """ParagraphSentence から条文本体の文章のみを取り出す。"""

@@ -17,6 +17,7 @@ def get_preamble(raw_preamble: dict) -> dict:
         }]
     }
 
+
 def get_examples(items: list) -> list:
     """例をリストとして取得する"""
 
@@ -30,6 +31,7 @@ def get_examples(items: list) -> list:
         examples.append(''.join(text))
 
     return examples
+
 
 def get_provision(paragraphs: list, title: str) -> dict:
     """paragraph と title を投げると リストに突っ込めばいいだけの provisions object(dict) を返す"""
@@ -73,19 +75,19 @@ def get_provision(paragraphs: list, title: str) -> dict:
     return provision
 
 
-
 with open('original/constitution.json', 'r') as original_file:
     original_json = json.load(original_file)
     raw_law = original_json['Law']['LawBody']
 
-#### 前文（Preamble）を index 0 に挿入 ####
+# 前文（Preamble）を index 0 に挿入
 contents: list = [get_preamble(raw_law['Preamble'])]
 
-#### 本文 ####
+# 本文
 for chapter in raw_law['MainProvision']['Chapter']:
     for article in become_list(chapter['Article']):
         paragraphs = become_list(article['Paragraph'])
         contents.append(get_provision(paragraphs, article['ArticleTitle']))
+
 
 with open('dist/constitution.json', 'w') as f:
     json.dump(contents, f, ensure_ascii=False, indent=2)
