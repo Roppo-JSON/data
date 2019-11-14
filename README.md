@@ -3,6 +3,8 @@
 [![LANGUAGE](https://img.shields.io/badge/Python-3.8.0-blue.svg)](https://docs.python.org/3/)
 [![LICENSE](https://img.shields.io/badge/License-Apache%202-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
+[![GitHub Actions](https://github.com/Roppo-JSON/data/workflows/.github/workflows/main.yml/badge.svg)](https://github.com/Roppo-JSON/data/actions)
+
 Roppo-JSON で使用する法律データはすべて [e-Gov](https://www.e-gov.go.jp/) のものを使用しています。
 
 ## フォーマット
