@@ -16,22 +16,22 @@ def become_list(item) -> list:
 def get_text_from_paragraph_sentence(paragraph_sentence: list) -> str:
     """ParagraphSentence から条文本体の文章のみを取り出す。"""
 
-    sentences: list = become_list(paragraph_sentence['Sentence'])
+    sentences: list = become_list(paragraph_sentence["Sentence"])
     text: list = []
     for sentence in sentences:
-        if 'Ruby' in sentence:
+        if "Ruby" in sentence:
             text.append(remove_ruby(sentence))
         else:
-            text.append(sentence['#text'])
+            text.append(sentence["#text"])
 
-    return ''.join(text)
+    return "".join(text)
 
 
 def remove_ruby(sentence: dict) -> str:
     """Ruby が存在する Sentence 内の条文を、ルビが振られている漢字を文中に含めた文字列を返す"""
 
-    rubies = become_list(sentence['Ruby'])
-    texts = sentence['#text']
+    rubies = become_list(sentence["Ruby"])
+    texts = sentence["#text"]
 
     # ルビが振られている漢字も含めた条文
     complete_text: list = []
@@ -39,9 +39,9 @@ def remove_ruby(sentence: dict) -> str:
     for i, text in enumerate(texts):
         complete_text.append(text)
         if i < len(rubies):
-            complete_text.append(rubies[i]['#text'])
+            complete_text.append(rubies[i]["#text"])
 
-    return ''.join(complete_text)
+    return "".join(complete_text)
 
 
 def get_examples(items: list) -> list:
@@ -49,11 +49,11 @@ def get_examples(items: list) -> list:
 
     examples: list = []
     for item in items:
-        examples.append(get_text_from_paragraph_sentence(item['ItemSentence']))
+        examples.append(get_text_from_paragraph_sentence(item["ItemSentence"]))
 
     return examples
 
 
 def print_line(length=20) -> str:
     """区切り線の表示"""
-    print('=' * length)
+    print("=" * length)
