@@ -2,6 +2,7 @@
 import json
 
 from utils.util import become_list
+from utils.util import get_examples
 from utils.util import get_text_from_paragraph_sentence
 
 
@@ -16,16 +17,6 @@ def get_preamble(raw_preamble: dict) -> dict:
             'examples': None
         }]
     }
-
-
-def get_examples(items: list) -> list:
-    """例をリストとして取得する"""
-
-    examples: list = []
-    for item in items:
-        examples.append(get_text_from_paragraph_sentence(item['ItemSentence']))
-
-    return examples
 
 
 def get_provision(paragraphs: list, title: str) -> dict:
