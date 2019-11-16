@@ -6,6 +6,7 @@ verify_ssl = true
 [scripts]
 style-check = "flake8 . --ignore E501 --show-source"
 validate-json = "python validator.py"
+test-util = "python tests/test_util.py"
 
 [dev-packages]
 flake8 = "*"
